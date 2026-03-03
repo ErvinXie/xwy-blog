@@ -1,26 +1,140 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: #f0efe8;
+  --color-bg-alt: #e8e6da;
+  --color-bg-card: #f5f4ed;
+  --color-text: #2a3228;
+  --color-text-secondary: #4a5a45;
+  --color-text-muted: #7a8a72;
+  --color-text-light: #a8b8a0;
+  --color-bamboo: #5a7a52;
+  --color-bamboo-dark: #3a5a32;
+  --color-bamboo-light: #8aaa7a;
+  --color-gold: #b8a048;
+  --color-ink: #1a2218;
+  --color-border: rgba(90, 122, 82, 0.15);
+  --color-seal: rgba(184, 60, 48, 0.45);
+
+  --font-serif: "Noto Serif SC", Georgia, serif;
+  --font-sans: "Noto Sans SC", system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+/* 竹简纹理背景 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 58px,
+      rgba(90, 122, 82, 0.03) 58px,
+      rgba(90, 122, 82, 0.03) 60px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Typography prose overrides */
+.prose {
+  font-family: var(--font-serif);
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-links: var(--color-bamboo-dark);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-quotes: var(--color-text-secondary);
+  --tw-prose-quote-borders: var(--color-bamboo);
+  --tw-prose-code: var(--color-bamboo-dark);
+  --tw-prose-hr: var(--color-border);
+}
+
+/* Code block styling */
+pre [data-line] {
+  padding: 0 1rem;
+}
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1rem;
+  margin-right: 1.5rem;
+  text-align: right;
+  color: var(--color-text-muted);
+}
+
+pre > code {
+  display: grid;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bamboo-light);
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(90, 122, 82, 0.2);
+  color: var(--color-ink);
+}
+
+/* ScrollReveal animation */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 竹节分隔符 */
+.bamboo-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 0;
+}
+
+.bamboo-divider .node {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--color-bamboo);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.bamboo-divider .line {
+  width: 60px;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0 1rem;
 }

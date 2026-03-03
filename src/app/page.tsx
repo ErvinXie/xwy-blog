@@ -1,65 +1,231 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getRecentPosts } from "@/lib/posts";
+import { formatDate } from "@/lib/utils";
+import { personalInfo } from "@/data/personal-info";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
-export default function Home() {
+export default async function HomePage() {
+  const recentPosts = await getRecentPosts(5);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      {/* 首屏 */}
+      <section className="flex min-h-screen items-center justify-center px-6 py-16 relative">
+        {/* 顶部竹节线 */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-transparent via-bamboo to-transparent" />
+
+        <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center md:items-start justify-center">
+          {/* 竖排区域 */}
+          <div className="flex gap-6 items-start">
+            <div
+              className="font-serif text-[clamp(2rem,4vw,3rem)] font-bold text-text tracking-[0.3em] leading-[1.8]"
+              style={{ writingMode: "vertical-rl" }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <span className="text-bamboo-dark">謝</span>威宇
+            </div>
+            <div
+              className="font-serif text-lg text-text-muted tracking-[0.5em] leading-[2.5]"
+              style={{ writingMode: "vertical-rl" }}
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              「行至水窮處
+              <br />
+              坐看雲起時」
+            </div>
+          </div>
+
+          {/* 横排补充 */}
+          <div className="max-w-[300px] md:self-end md:pb-8 text-center md:text-left">
+            <p className="text-sm text-text-secondary leading-8">
+              {personalInfo.bio}
+            </p>
+            <nav className="mt-8 flex flex-col gap-3">
+              <Link
+                href="#writing"
+                className="inline-flex items-center gap-2 text-sm text-text-muted tracking-wider transition-all hover:text-bamboo-dark hover:translate-x-1"
+              >
+                <span className="text-bamboo-light">—</span> 阅读文章
+              </Link>
+              <Link
+                href="#projects"
+                className="inline-flex items-center gap-2 text-sm text-text-muted tracking-wider transition-all hover:text-bamboo-dark hover:translate-x-1"
+              >
+                <span className="text-bamboo-light">—</span> 浏览项目
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 text-sm text-text-muted tracking-wider transition-all hover:text-bamboo-dark hover:translate-x-1"
+              >
+                <span className="text-bamboo-light">—</span> 了解更多
+              </Link>
+            </nav>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <div className="bamboo-divider">
+        <div className="line" />
+        <div className="node" />
+        <div className="line" />
+      </div>
+
+      {/* 文章 */}
+      <section id="writing" className="mx-auto max-w-[900px] px-6 py-12">
+        <ScrollReveal>
+          <div className="flex items-center gap-4 mb-10">
+            <h2
+              className="font-serif text-xl font-semibold text-text tracking-[0.3em]"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              文章
+            </h2>
+            <span className="text-xs text-text-light tracking-widest border-l-2 border-bamboo-light pl-3">
+              WRITING
+            </span>
+          </div>
+        </ScrollReveal>
+
+        <div className="flex flex-col">
+          {recentPosts.map((post, i) => (
+            <ScrollReveal key={post.slug} delay={i * 80}>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group grid grid-cols-[80px_1fr] md:grid-cols-[100px_1fr] gap-4 md:gap-8 py-8 border-l-2 border-border ml-6 md:ml-12 pl-6 relative transition-all hover:bg-bamboo/[0.03] hover:border-l-bamboo"
+              >
+                <div className="absolute left-[-5px] top-9 w-2 h-2 rounded-full bg-bg border-2 border-bamboo-light transition-all group-hover:bg-bamboo group-hover:border-bamboo" />
+                <div className="text-sm text-text-light font-serif pt-0.5">
+                  {formatDate(post.date).slice(5)}
+                  <span className="block text-xs mt-0.5 tracking-wider">
+                    {formatDate(post.date).slice(0, 5)}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-semibold text-text transition-colors group-hover:text-bamboo-dark">
+                    {post.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-text-muted leading-7">
+                    {post.description}
+                  </p>
+                  <div className="flex gap-2 mt-2">
+                    {post.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs text-bamboo border border-border px-2 py-0.5 rounded-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+          ))}
         </div>
-      </main>
-    </div>
+
+        <ScrollReveal>
+          <div className="mt-8 ml-6 md:ml-12 pl-6">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-sm text-text-muted tracking-wider transition-all hover:text-bamboo-dark"
+            >
+              <span className="text-bamboo-light">—</span> 查看全部文章
+            </Link>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <div className="bamboo-divider">
+        <div className="line" />
+        <div className="node" />
+        <div className="line" />
+      </div>
+
+      {/* 项目 */}
+      <section id="projects" className="mx-auto max-w-[900px] px-6 py-12">
+        <ScrollReveal>
+          <div className="flex items-center gap-4 mb-10">
+            <h2
+              className="font-serif text-xl font-semibold text-text tracking-[0.3em]"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              造物
+            </h2>
+            <span className="text-xs text-text-light tracking-widest border-l-2 border-bamboo-light pl-3">
+              PROJECTS
+            </span>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+          {[
+            {
+              num: "壹",
+              name: "KTransformers",
+              desc: "大模型推理优化框架，主要维护者",
+              tech: ["Python", "CUDA", "LLM"],
+            },
+            {
+              num: "贰",
+              name: "VertexSurge",
+              desc: "面向十亿级边图的变长图模式匹配引擎",
+              tech: ["C++", "Graph", "Pattern Matching"],
+            },
+          ].map((project, i) => (
+            <ScrollReveal key={project.num} delay={i * 80}>
+              <div className="group bg-bg-card p-8 transition-all hover:bg-bamboo/[0.04] cursor-pointer relative">
+                <div className="absolute top-6 left-0 w-[3px] h-0 bg-bamboo transition-all group-hover:h-[calc(100%-3rem)]" />
+                <div className="font-serif text-xs text-text-light mb-3 tracking-wider">
+                  {project.num}
+                </div>
+                <h3 className="font-serif text-lg font-semibold text-text mb-2">
+                  {project.name}
+                </h3>
+                <p className="text-sm text-text-muted leading-7">
+                  {project.desc}
+                </p>
+                <div className="flex gap-2 mt-3 flex-wrap">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="text-xs text-bamboo border border-border px-2 py-0.5 rounded-sm"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal>
+          <div className="mt-8">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 text-sm text-text-muted tracking-wider transition-all hover:text-bamboo-dark"
+            >
+              <span className="text-bamboo-light">—</span> 查看全部项目
+            </Link>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* 底部 */}
+      <footer className="py-24 text-center">
+        <div className="inline-flex items-center justify-center w-12 h-12 border-2 border-seal rounded font-serif text-sm text-seal rotate-2 mb-6">
+          谢
+        </div>
+        <p className="font-serif text-lg text-text-muted tracking-[0.5em] leading-9">
+          偶然值林叟
+          <br />
+          談笑無還期
+        </p>
+        <p className="mt-4 font-serif text-xs text-text-light tracking-[0.3em]">
+          王維《終南別業》
+        </p>
+        <p className="mt-6 text-xs text-text-light/40">
+          © {new Date().getFullYear()} 謝威宇
+        </p>
+      </footer>
+    </>
   );
 }
