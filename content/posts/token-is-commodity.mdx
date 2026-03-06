@@ -1,0 +1,58 @@
+---
+title: "Token 是商品，不是服务"
+date: "2025-03-01"
+description: "为什么 AI Token 更像石油而非软件——从大宗商品的视角重新理解 Token 经济学。"
+tags: ["AI", "商业", "思考"]
+published: true
+---
+
+前些天我正在去某客户的滴滴上，和同事聊到大语言模型 Token 的边际成本，在那一瞬间，我意识到一个显而易见的事实，就是 Token 的边际成本，无法像互联网那样无限降低。在那个时刻，我mac 里 claude code 所消耗的 token 和比亚迪网约车消耗的电力，是一类东西。
+
+作为对比，一次 Google 搜索的边际成本只有 [$0.0001](https://www.eia.gov/energyexplained/electricity/)，互联网服务 [90-95% 的成本是固定的](https://www.drivetrain.ai/post/unit-economics-of-ai-saas-companies-cfo-guide-for-managing-token-based-costs-and-margins)（服务器、研发、人力），规模越大边际成本真的趋零。但 Token 不一样，GPU 算力占 Token 售价的 [25-45%](https://introl.com/blog/inference-unit-economics-true-cost-per-million-tokens-guide)，每一次调用都在实实在在地烧钱。
+
+Token 显然更像是一个商品，并且是一种运输成本接近于 0 的大宗商品。
+
+## 加工电力，生产智能
+
+从这个角度看，就非常有意思，Token 和汽油一样变成了一种消费品，而它的原料是电力。炼油行业有个术语叫 [crack spread（裂解价差）](https://www.cmegroup.com/education/articles-and-reports/introduction-to-crack-spreads)，指的是原油和成品油之间的差价。不同行业都有类似的概念：大豆叫 crush spread，燃气发电叫 spark spread。Token 行业还没有自己的术语，但逻辑是一样的——把低价原料加工成高价产品，赚中间的价差。如果要起一个名字的话，应该叫 **inference spread**，因为 Token 的生产工艺是推理（inference）。
+
+不过说实话，今天 Token 的成本构成里电力还不是大头。目前的结构大概是：[GPU 算力（硬件折旧）25-45%、电力 ~2.5%、研发摊销 5-15%、人力运维 10-20%](https://introl.com/blog/inference-unit-economics-true-cost-per-million-tokens-guide)。硬件折旧才是主要成本。但我认为这是会变的。消费级 GPU 的物理寿命在 [5-8 年以上](https://www.digitaltrends.com/computing/how-long-do-gpus-last/)，加密货币挖矿潮已经证明了这一点——[24/7 满载、60-80°C 连续运行，大部分矿卡也撑了 3-5 年](https://emcd.io/articles/mining/how-long-does-a-gpu-last-while-mining/)，而 AI 推理的负载比挖矿轻得多。GPU 芯片本身几乎不会坏，坏的是风扇和硅脂，换一次也就十几块钱。只要卡还跑得动目标模型，就没有理由不继续用。GPU 越用越久，折旧摊到每个 Token 上就越薄，电力的占比就会越来越高。极端情况下会趋近于炼铝行业——铝被叫做"固态电力"，因为[电力占炼铝成本的 ~40%](https://elkamehr.com/en/the-impact-of-energy-costs-on-aluminum-production-a-2025-outlook/)。Token 最终也可能变成某种"液态电力"。
+
+美国汽油的价格构成是：[原油 52%、炼化 16%、分销 16%、税 16%](https://www.eia.gov/energyexplained/gasoline/factors-affecting-gasoline-prices.php)。Token 的成本结构还没走到那一步，但方向是一致的——原料会越来越成为成本的大头。
+
+而 Opus 和 Sonnet 所产生的 Token 就像 98 号汽油和 92 号汽油一样，变成不同工艺的产品了。而大规模卡的集群就变成工厂了。顺便说一句，我不喜欢 MaaS（Model as a Service）这个称呼，因为它暗示 Model 是一种 Service。但 Model 只是 Token 工厂的工艺，Token 才是产品，不是 Service 的体现。所以我更愿意叫它 Token 行业。
+
+而 Token 行业也会面临和重资产行业一样的问题，产能扩张存在长的周期，这一点在今年年初智谱的 GLM 断供也可以印证。互联网的经典打法是烧钱获客，规模起来后边际成本趋零，然后赚钱。而 Token 行业做不到。每一次调用都要消耗真实算力，规模再大，生产成本也压不到零。做这门生意需要的是供应商管理、成本精算、产能调度——重资产运营。
+
+数字也能说明这一点。衡量一个行业有多"重"，可以看 CapEx/Revenue（资本支出占营收的比例）。传统 SaaS 只有 [3-8%](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/mgnroc.html)，轻得几乎没有资产。而 AI 基础设施已经到了另一个量级：[微软近期 ~45%，AWS 甚至超过 75%](https://platformonomics.com/2026/02/follow-the-capex-2025-retrospective/)。
+
+有人可能会说，今天的美国炼油行业 CapEx/Revenue 只有 [1-2%](https://investorvalero.com/news/news-details/2025/Valero-Energy-Reports-2024-Fourth-Quarter-and-Full-Year-Results/default.aspx)，看着很轻，哪里算重资产？但那是因为美国最后一座大型炼厂建于 1976 年，资产早就折完了，现在花的全是维护钱。如果看建设期，情况完全不同——Reliance Industries 在 1990 年代建 [Jamnagar 炼厂](https://en.wikipedia.org/wiki/Jamnagar_refinery)时，建设成本达到年营收的 [35-70%](https://www.business-standard.com/companies/news/ril-invest-over-125-bn-in-capex-in-last-10-years-as-it-undertook-expansion-124033100101_1.html)。[TSMC 这些年也一直在 43-55%](https://siliconmatter.substack.com/p/the-approaching-semiconductor-capital)。所有重资产行业都是这个规律：建设期 CapEx 极高，随着资产折旧完毕逐步下降，最终收敛到维护水平。Token 行业现在 45-57% 的 CapEx 强度，不是它特别重，而是它还在疯狂建厂。
+
+所以 Token 市场大概率不会出现赢家通吃。更可能是几家在不同细分赛道共存，和石油行业差不多。
+
+## Token 是正在爆炸的刚需
+
+自从去年十月起，我就从来没有打开过 vscode 了。在我当初学习计算机这个专业的时候，我是完全不会料想到今天这一点的。现在想起， JetBrains 给大学生免费使用他们的全家桶，结果培养的用户全部没了，被降维打击了。至少在 coding 这一个层面，已经是刚需了。每当 coding plan 的 usage 用完，我就直接出去转转了。没办法，vibe coding 带来至少一到两个数量级的工作效率提升，休息一下所消耗的线性时间完全不足为道。而今天也发生了一件很奇妙的时候，交付部署人员想要一个我们引擎的 docker，我第一时间想到的却是市场同事，因为市场同事早上刚刚使用 vibe coding 自己搓了一个image 出来，并且运行完全没有问题。
+
+在去年九月，我长期使用 claude code 一个月之后，我就知道这个东西一定爆炸。并且基于这个 Agent 的方式总会以残酷的方式替代所有它能替代的东西。这个和内容生成还不一样，代码的用户并不关心你代码写的好还是坏，只关心结果。如果结果就是这样的，那么中间是怎么样的，都不重要了。就像你不会关心比亚迪网约车冲的是快充还是慢充，是国网还是自家充电桩。
+
+这也就是为什么 agent 的 token 会是变成标品。事实上，许多人根本无法分辨出 Opus 4.6 和 GLM5 的区别。在去年十一月，我还能在几次对话中分辨出来，而现在我也有点分辨不出来了。以至于有时候看到 claude code 界面冒出 Z.ai 才会发现后面其实是 GLM。
+
+而整个行业的重心也在从训练转向推理。[推理占总 AI 算力的比例从 2023 年的约 1/3，预计到 2030 年会达到 75%](https://www.tonygraysonvet.com/post/ai-training-vs-inference)。消费端在吞噬一切。
+
+## 生产 92# Token
+
+开源模型和开源推理引擎，让分布式生产成为可能。有算力就能跑模型，就能加工电力得到 Token。而不同硬件产出的同一模型 Token 没有品质差异。昇腾芯片跑出来的 K2.5 Token 和 H200 跑出来的一模一样。硬件只是不同产地的炼油厂，产品是同一种东西，并且还没有运输成本。
+
+事实上，我认为这会完全改变硬件的折旧方式，只要你的卡还跑得动目标模型，能产出合格 Token，就没有任何不接着用的道理。这里有个很有意思的反差：传统重资产的折旧周期远短于实际寿命——炼油厂账面折旧 [7-10 年](https://hadcointernational.com/how-to-assess-the-lifespan-and-depreciation-of-oilfield-machinery/)，但实际能用 [40-100 年](https://www.controleng.com/products/most-refineries-more-than-40-years-old-how-to-improve/)，美国最新的大型炼厂建于 1976 年，到现在还在跑。GPU 完全反过来：账面折旧 [5-6 年](https://siliconangle.com/2025/11/22/resetting-gpu-depreciation-ai-factories-bend-dont-break-useful-life-assumptions/)，但实际可能 3-5 年就过时了。H100 的租赁价从 2023 年的 [$8+/小时跌到 2025 年的 $1.5-3.5/小时](https://www.latent.space/p/gpu-bubble)，两年跌了 55-80%。传统资产账上折完了还能用几十年，GPU 账上还没折完可能就该换了。
+
+但换个角度想，只要推理需求持续增长，老卡就能沿着"价值瀑布"往下走：前 1-2 年做训练，3-4 年转推理，5-6 年做批量任务。类似 [台积电的 28nm 老制程折完后继续给 IoT 芯片供货赚钱](https://www.stanleylaman.com/signals-and-noise/gpus-how-long-do-they-really-last)。这个实际上缩短了电子硬件在产业链中和变现的距离。因此这也就是为什么 Token 是一种大宗商品，因为消费和生产都可以极度分散。
+
+## 倾销
+
+无法对 Token 收关税，所以 Token 的倾销是必然会出现的。事实上已经在发生了。现在中国的 Token 价格大约是美国的 [1/35](https://kr-asia.com/who-leads-chinas-ai-cloud-race-alibaba-bytedance-and-baidu-all-stake-a-claim)，火山引擎拿下了中国云 Token 处理[近一半的市场份额](https://kr-asia.com/who-leads-chinas-ai-cloud-race-alibaba-bytedance-and-baidu-all-stake-a-claim)，这个价格几乎肯定是亏本的，靠的是母公司的广告和电商业务在补贴。
+
+中国的 Token 成本全世界最低，总有一天会倾销到全世界。倾销可以摧毁对方相关的产业。我认为模型本质上没有多大的区别，就像 GLM 总会赶上 Opus 一样。从这个角度讲，未来主要的 Token 产能大多只会在中国。
+
+
+
