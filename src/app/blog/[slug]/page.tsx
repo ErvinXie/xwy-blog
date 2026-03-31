@@ -5,6 +5,7 @@ import { getPostBySlug, getAllSlugs } from "@/lib/posts";
 import { compileMdxContent } from "@/lib/mdx";
 import { formatDate } from "@/lib/utils";
 import TOC from "@/components/blog/TOC";
+import Comments from "@/components/blog/Comments";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -78,6 +79,8 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
           <TOC />
         </div>
+
+        <Comments />
       </article>
     </div>
   );

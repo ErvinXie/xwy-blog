@@ -20,6 +20,24 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Comment Setup
+
+This blog uses [giscus](https://giscus.app/) for comments, backed by GitHub Discussions.
+
+1. Enable GitHub Discussions for the repository.
+2. Install the `giscus` GitHub App for the repository.
+3. Create a Discussions category for comments. `Announcements` is a good default because only maintainers and giscus can create new threads.
+4. Use the giscus configuration page to get the repository and category IDs.
+5. Add these variables to `.env.local`:
+
+```bash
+NEXT_PUBLIC_GISCUS_REPO=ErvinXie/xwy-blog
+NEXT_PUBLIC_GISCUS_REPO_ID=
+NEXT_PUBLIC_GISCUS_CATEGORY=Announcements
+NEXT_PUBLIC_GISCUS_CATEGORY_ID=
+NEXT_PUBLIC_GISCUS_THEME=light
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
