@@ -8,7 +8,7 @@ const giscusConfig = {
   repoId: process.env.NEXT_PUBLIC_GISCUS_REPO_ID,
   category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
   categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
-  theme: process.env.NEXT_PUBLIC_GISCUS_THEME ?? "light",
+  theme: process.env.NEXT_PUBLIC_GISCUS_THEME ?? "preferred_color_scheme",
 };
 
 const isConfigured = Object.values(giscusConfig).every(Boolean);
@@ -32,10 +32,10 @@ export default function Comments() {
     script.setAttribute("data-category", giscusConfig.category!);
     script.setAttribute("data-category-id", giscusConfig.categoryId!);
     script.setAttribute("data-mapping", "pathname");
-    script.setAttribute("data-strict", "1");
+    script.setAttribute("data-strict", "0");
     script.setAttribute("data-reactions-enabled", "1");
     script.setAttribute("data-emit-metadata", "0");
-    script.setAttribute("data-input-position", "top");
+    script.setAttribute("data-input-position", "bottom");
     script.setAttribute("data-theme", giscusConfig.theme);
     script.setAttribute("data-lang", "zh-CN");
     script.setAttribute("loading", "lazy");
