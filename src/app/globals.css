@@ -138,3 +138,12 @@ pre > code {
   background: var(--color-border);
   margin: 0 1rem;
 }
+
+.comments-shell .giscus,
+.comments-shell .giscus-frame {
+  width: 100%;
+}
+
+.comments-shell .giscus-frame {
+  border-radius: 1rem;
+}
