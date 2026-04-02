@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getRecentPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/utils";
 import { personalInfo } from "@/data/personal-info";
+import { externalLinks } from "@/data/external-links";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default async function HomePage() {
@@ -56,6 +57,12 @@ export default async function HomePage() {
                 className="inline-flex items-center gap-2 text-sm text-text-muted tracking-wider transition-all hover:text-bamboo-dark hover:translate-x-1"
               >
                 <span className="text-bamboo-light">—</span> 了解更多
+              </Link>
+              <Link
+                href="#links"
+                className="inline-flex items-center gap-2 text-sm text-text-muted tracking-wider transition-all hover:text-bamboo-dark hover:translate-x-1"
+              >
+                <span className="text-bamboo-light">—</span> 友情链接
               </Link>
             </nav>
           </div>
@@ -207,6 +214,55 @@ export default async function HomePage() {
             </Link>
           </div>
         </ScrollReveal>
+      </section>
+
+      <div className="bamboo-divider">
+        <div className="line" />
+        <div className="node" />
+        <div className="line" />
+      </div>
+
+      {/* 友情链接 */}
+      <section id="links" className="mx-auto max-w-[900px] px-6 py-12">
+        <ScrollReveal>
+          <div className="flex items-center gap-4 mb-10">
+            <h2
+              className="font-serif text-xl font-semibold text-text tracking-[0.3em]"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              链接
+            </h2>
+            <span className="text-xs text-text-light tracking-widest border-l-2 border-bamboo-light pl-3">
+              LINKS
+            </span>
+          </div>
+        </ScrollReveal>
+
+        <div className="flex flex-col border border-border divide-y divide-border">
+          {externalLinks.map((link, i) => (
+            <ScrollReveal key={link.url} delay={i * 70}>
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group grid grid-cols-1 gap-4 bg-bg-card px-6 py-6 transition-all hover:bg-bamboo/[0.04] md:grid-cols-[96px_1fr_auto] md:items-center md:gap-8 md:px-8"
+              >
+                <div className="font-serif text-xs text-text-light tracking-[0.3em] md:pt-0.5">
+                  {link.label}
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-serif text-lg font-semibold text-text transition-colors group-hover:text-bamboo-dark">
+                    {link.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-text-muted leading-7">{link.description}</p>
+                </div>
+                <span className="inline-flex items-center gap-2 text-xs text-text-light tracking-wider transition-all group-hover:text-bamboo-dark md:justify-self-end">
+                  <span className="text-bamboo-light">—</span> 打开主页
+                </span>
+              </a>
+            </ScrollReveal>
+          ))}
+        </div>
       </section>
 
       {/* 底部 */}

@@ -25,6 +25,7 @@ export const experiences: ExperienceItem[] = [
     type: "education",
     title: "计算机科学与技术（博士）",
     organization: "清华大学 计算机系 高性能所",
+    organizationUrl: "https://madsys.cs.tsinghua.edu.cn/",
     period: "2021 - 至今",
     description: "在 MADSYS 实验室主攻系统方向，师从武永卫教授，受章明星老师联合指导。先后研究图数据库与 AI 推理优化。",
     skills: ["图数据库", "AI 推理优化", "高性能计算", "C++", "CUDA"],

@@ -13,7 +13,7 @@ const projects = [
     name: "KTransformers",
     desc: "大模型推理优化框架，作为主要维护者参与开发。专注于 Transformer 模型的高效推理与部署优化，支持多种硬件后端加速。",
     tech: ["Python", "CUDA", "C++", "LLM", "Inference"],
-    link: "https://ktransformers.net/zh",
+    link: "https://ktransformers.net/en",
   },
   {
     num: "贰",
